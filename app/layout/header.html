@@ -24,19 +24,19 @@
           <!-- The user image in the navbar-->
           <i class="fa fa-user"></i>
           <!-- hidden-xs hides the username on small devices so only the image appears. -->
-          <span class="hidden-xs">Andrea Maddalena</span>
+          <span class="hidden-xs"> {{ sh.username }}</span>
         </a>
         <ul class="dropdown-menu">
           <!-- Menu Footer-->
-            <li>
-                <a href="#/profilo"><i class="fa fa-user"></i> Profilo</a>
-            </li>
-            <li>
-                <a href="#/cambipassword"><i class="fa fa-lock"></i> Cambio Password</a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a href="#"><i class="fa fa-sign-out"></i> Esci</a>
+          <li>
+              <a href="#/profilo"><i class="fa fa-user"></i> Profilo</a>
+          </li>
+          <li>
+              <a href="#/account/cambioPassword"><i class="fa fa-lock"></i> Cambio Password</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+              <a ng-click="sh.logout()"><i class="fa fa-sign-out"></i> Esci</a>
           </li>
         </ul>
       </li>
@@ -46,5 +46,6 @@
 </header>
 
 <script>
+  $.AdminLTE.controlSidebar.activate();
   $.AdminLTE.pushMenu.activate("[data-toggle='offcanvas']");
 </script>

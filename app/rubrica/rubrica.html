@@ -1,0 +1,77 @@
+<!-- Content Header (Page header) -->
+<ng-include src="'/app/common/pageHeader.html'"></ng-include>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-3">
+      <a href="#/rubrica/new" class="btn btn-primary btn-block margin-bottom">Nuovo Contatto</a>
+      <div class="box box-solid">
+        <div class="box-header with-border">
+          <h3 class="box-title">Categorie</h3>
+          <div class="box-tools">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div>
+        </div>
+        <div class="box-body no-padding">
+          <ul class="nav nav-stacked">
+            <li ng-class="{active: vm.checkFilter('tipo', '') }">
+              <a ng-click="vm.setFilter('tipo')" href="javascript:void(0);"><i class="fa fa-circle-o"></i> Tutti </a></li>
+            <li ng-class="{active: vm.checkFilter('tipo', 'azienda') }">
+              <a ng-click="vm.setFilter('tipo','azienda')" href="javascript:void(0);"><i class="fa fa-check-circle-o"></i> Aziende </a></li>
+            <li ng-class="{active: vm.checkFilter('tipo', 'produttore') }">
+              <a ng-click="vm.setFilter('tipo','produttore')" href="javascript:void(0);"><i class="fa fa-check-circle-o"></i> Produttori</a></li>
+          </ul>
+        </div><!-- /.box-body -->
+      </div><!-- /. box -->
+    </div><!-- /.col -->
+    <div class="col-md-9">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Contatti</h3>
+          <div class="box-tools pull-right">
+            <form class="form-inline" ng-submit="vm.applyFilter()">
+              <div class="input-group">
+                <input type="text" class="form-control input-sm" ng-model="vm.filter.search" placeholder="Cerca...">
+                <span class="input-group-addon" ng-click="vm.applyFilter()" ><i class="glyphicon glyphicon-search"></i></span>
+                <span class="input-group-addon" ng-click="vm.resetFilter()"><i class="glyphicon glyphicon-remove"></i></span>
+              </div>
+            </form>
+          </div><!-- /.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body no-padding">
+          <!-- Toolbar List -->
+          <ng-include src="'/app/common/toolbarList.html'"></ng-include>
+
+          <div class="table-responsive mailbox-messages">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Ragione Sociale</th>
+                  <th>P.IVA</th>
+                  <th>Sede</th>
+                  <th>Tel.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in vm.list">
+                  <td><input type="checkbox"></td>
+                  <td class="mailbox-name"><a href="#/rubrica/{{ item._id }}">{{ item.ragioneSociale }}</a></td>
+                  <td class="mailbox-subject">{{ item.partitaIva }} </td>
+                  <td class="mailbox-subject">{{ item.comune }} <b ng-if="item.provincia">({{ item.provincia }})</b></td>
+                  <td class="mailbox-subject">{{ item.telefono }}</td>
+                </tr>
+              </tbody>
+            </table><!-- /.table -->
+          </div><!-- /.mail-box-messages -->
+        </div><!-- /.box-body -->
+        <div class="box-footer no-padding">
+          <!-- Toolbar List -->
+          <ng-include src="'/app/common/toolbarList.html'"></ng-include>
+        </div>
+
+      </div><!-- /. box -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</section><!-- /.content -->

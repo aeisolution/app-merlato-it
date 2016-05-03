@@ -1,0 +1,19 @@
+<div class="box box-default">
+  <div class="box-body">
+    <div class="mailbox-controls">
+      <div class="btn-group">
+        <button ng-click="vm.new()" class="btn btn-default btn-sm"><i class="fa fa-file-o"></i> nuovo</button>
+        <button ng-click="vm.refreshRecord()" class="btn btn-default btn-sm"><i class="fa fa-undo"></i> annulla</button>
+        <button ng-click="vm.saveRecord()" ng-disabled="frmContatto.$invalid" class="btn btn-default btn-sm"><i class="fa fa-save"></i> salva</button>
+      </div><!-- /.btn-group -->
+      <button ng-click="vm.refreshRecord()" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i> aggiorna</button>
+      <button ng-click="vm.deleteRecord(vm.record)" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> elimina</button>
+      <div class="pull-right">
+        <div class="btn-group">
+          <button class="btn btn-default btn-sm" ng-click="vm.recordPrev()"><i class="fa fa-chevron-left"></i></button>
+          <button class="btn btn-default btn-sm" ng-click="vm.recordNext()"><i class="fa fa-chevron-right"></i></button>
+        </div><!-- /.btn-group -->
+      </div><!-- /.pull-right -->
+    </div>
+</div>
+</div>

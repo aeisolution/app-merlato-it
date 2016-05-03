@@ -1,0 +1,61 @@
+<div class="modal-header">
+	<button type="button" ng-click="vm.modalCancel()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title">Selezione Analisi</h4>
+</div>
+<div class="modal-body">
+
+	<!-- Ricera -->
+	<div>
+		<form role="form" class="form-inline">
+			<div class="form-group">
+				<label>Nome</label>
+				<input ng-model="vm.filter.nome" class="form-control">
+			</div>
+			<!--
+			<div class="form-group">
+				<label>Categoria</label>
+				<select ng-model="vm.filter.categoria" ng-options="cat.nome as cat.nome for cat in vm.categorieAnalisi | orderBy: 'nome' " class="form-control">
+					<option value="">-- seleziona --</option>
+				</select>
+			</div>
+			-->
+			<div class="form-group">
+				<label>Specie</label>
+				<input ng-model="vm.filter.specie" class="form-control" ng-disabled="true" disabled>
+			</div>
+			<button type="submit" ng-click="vm.refresh()" class="btn btn-default">cerca</button>
+		</form>
+	</div>
+
+	<!-- Elenco Iscritti con paginazione -->
+	<div class="row">
+		<div class="table-responsive col-xs-12">
+			<table class="table table-bordered table-hover table-striped">
+				<thead>
+						<tr>
+								<th>Esame</th>
+								<th>U.M.</th>
+								<th>Categoria</th>
+								<th>Azioni</th>
+						</tr>
+				</thead>
+				<tbody>
+						<tr ng-repeat="analisi in vm.elenco">
+							<td>{{ analisi.nome }}</td>
+							<td>{{ analisi.um }}</td>
+							<td>{{ analisi.categoria }}</td>
+							<td>
+								<button ng-click="vm.select(analisi)" class="btn btn-default btn-sm"><i class="fa fa-check"></i></button>
+							</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-12">
+			<pagination total-items="vm.numRecords" ng-model="vm.page" max-size="7" class="pagination-sm" boundary-links="true" items-per-page="20" ng-change="vm.refresh()"></pagination>
+
+		</div>
+			<!-- /.table-responsive -->
+	</div>
+
+</div>

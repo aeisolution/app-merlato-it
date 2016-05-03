@@ -1,0 +1,11 @@
+<div class="mailbox-controls">
+  <!-- Check all button -->
+  <button class="btn btn-default btn-sm" ng-click="vm.refrestList()"><i class="fa fa-refresh"></i> Aggiorna</button>
+  <div class="pull-right">
+    {{ vm.listPageLabel }}
+    <div class="btn-group">
+      <button class="btn btn-default btn-sm" ng-click="vm.pagePrev()"><i class="fa fa-chevron-left"></i></button>
+      <button class="btn btn-default btn-sm" ng-click="vm.pageNext()"><i class="fa fa-chevron-right"></i></button>
+    </div><!-- /.btn-group -->
+  </div><!-- /.pull-right -->
+</div>

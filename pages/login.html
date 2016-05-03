@@ -1,16 +1,16 @@
 <div class="login-box">
   <div class="login-logo">
-    <a href="#/">lu<b>LAB</b> - Merlato</a>
+    <a href="#/">lu<b>LAB</b></a>
   </div><!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Inserire Credenziali di Accesso</p>
-    <form action="#/dashboard" method="post">
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+    <form name="loginForm" role="form">
+      <div class="form-group has-feedback" ng-class="{'has-error': loginForm.username.$dirty && loginForm.username.$invalid }">
+        <input type="text" name="username" ng-model="vm.user.username" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+      <div class="form-group has-feedback" ng-class="{'has-error': loginForm.password.$dirty && loginForm.password.$invalid }">
+        <input type="password" name="password" ng-model="vm.user.password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -22,7 +22,7 @@
           </div>
         </div><!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Accedi</button>
+          <button ng-disabled="loginForm.$pristine || loginForm.$invalid" ng-click="vm.login()" class="btn btn-primary btn-block btn-flat">Accedi</button>
         </div><!-- /.col -->
       </div>
     </form>

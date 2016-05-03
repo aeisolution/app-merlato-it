@@ -1,0 +1,70 @@
+<!-- Content Header (Page header) -->
+<ng-include src="'/app/common/pageHeader.html'"></ng-include>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Elenco Fatture</h3>
+          <div class="box-tools pull-right">
+            <form class="form-inline" ng-submit="vm.applyFilter()">
+              <div class="input-group">
+                <input type="text" class="form-control input-sm" ng-model="vm.filter.search" placeholder="Cerca...">
+                <span class="input-group-addon" ng-click="vm.applyFilter()" ><i class="glyphicon glyphicon-search"></i></span>
+                <span class="input-group-addon" ng-click="vm.resetFilter()"><i class="glyphicon glyphicon-remove"></i></span>
+              </div>
+            </form>
+          </div><!-- /.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <!-- Toolbar List -->
+          <ng-include src="'/app/common/toolbarList.html'"></ng-include>
+
+          <div class="table-responsive mailbox-messages">
+
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Numero</th>
+                  <th>Data</th>
+                  <th>Destinatario</th>
+                  <th>Totale</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in vm.list">
+                  <td class="mailbox-name">{{ item.numero }}</td>
+                  <td class="mailbox-subject">{{ item.data }} </td>
+                  <td class="mailbox-subject">{{ item.destinatario }} <b ng-if="item.provincia">({{ item.tipo }})</b></td>
+                  <td class="mailbox-subject">{{ item.totale | currency:"€ ":2 }}</td>
+                  <td><i class="fa fa-cloud-download fa-2x"></i></td>
+                </tr>
+              </tbody>
+              <!--
+              <tfoot>
+                <tr>
+                  <th>Numero</th>
+                  <th>Data</th>
+                  <th>Destinatario</th>
+                  <th>Totale</th>
+                  <th>Download</th>
+                </tr>
+              </tfoot>
+            -->
+            </table>
+          </div><!-- /.mail-box-messages -->
+        </div><!-- /.box-body -->
+        <div class="box-footer no-padding">
+          <!-- Toolbar List -->
+          <ng-include src="'/app/common/toolbarList.html'"></ng-include>
+        </div>
+      </div><!-- /.box -->
+
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+</section>

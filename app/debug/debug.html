@@ -1,0 +1,27 @@
+<!-- Content Header (Page header) -->
+<ng-include src="'/app/common/pageHeader.html'"></ng-include>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Service List</h3>
+          <div class="box-tools">
+            <button class="btn btn-box-tool" ng-click="vm.getServiceList()"><i class="fa fa-play"></i> execute</button>
+            <button class="btn btn-box-tool" ng-click="vm.resetServiceList()"><i class="fa fa-refresh"></i> refresh</button>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+          <h3>Controllers</h3>
+          <pre>
+            {{ vm.serviceList | json }}
+          </pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -4,7 +4,7 @@
     var app = angular.module('app');
 		app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-			//$httpProvider.interceptors.push('TokenInterceptor');
+			$httpProvider.interceptors.push('TokenInterceptor');
 
       $urlRouterProvider.otherwise("/login");
 
@@ -12,7 +12,8 @@
           // Page *****************************************
           .state('login', {
               url: '/login',
-              templateUrl: 'pages/login.html'
+              templateUrl: 'pages/login.html',
+              controller: 'LoginCtrl as vm'
           })
           // MasterPage *****************************************
           .state('root', {
@@ -21,24 +22,41 @@
           // Main Commands *****************************************
           .state('root.dashboard', {
               url: '/dashboard',
-              templateUrl: 'views/dashboard.html'
+              templateUrl: 'app/dashboard/dashboard.html',
+              controller: 'dashboardCtrl as vm',
+              access: { requiredLogin: true }
           })
+          // Archivi *****************************************
           .state('root.fatture', {
               url: '/fatture',
-              templateUrl: 'views/fatture.html'
+              templateUrl: 'app/fattura/fattura.html',
+              controller: 'fatturaCtrl as vm',
+              access: { requiredLogin: true }
           })
           .state('root.referti', {
               url: '/referti',
-              templateUrl: 'views/referti.html'
+              templateUrl: 'app/referto/referto.html',
+              access: { requiredLogin: true }
+          })
+          // Archivi - Rubrica ***********************************
+          .state('root.rubrica', {
+              url: '/rubrica',
+              templateUrl: 'app/rubrica/rubrica.html',
+              controller: 'rubricaCtrl as vm',
+              access: { requiredLogin: true }
+          })
+          .state('root.contatti', {
+              url: '/rubrica/:id',
+              templateUrl: 'app/rubrica/contatto.html',
+              controller: 'rubricaCtrl as vm',
+              access: { requiredLogin: true }
           })
           // Settings *****************************************
-          .state('root.profilo', {
-              url: '/profilo',
-              templateUrl: 'views/profilo.html'
-          })
-          .state('root.cambiopassword', {
-              url: '/cambiopassword',
-              templateUrl: 'views/cambiopassword.html'
+          .state('root.debug', {
+              url: '/debug',
+              templateUrl: 'app/debug/debug.html',
+              controller: 'debugCtrl as vm',
+              access: { requiredLogin: true }
           });
 
 		});

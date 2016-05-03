@@ -1,0 +1,115 @@
+<!-- Content Header (Page header) -->
+<ng-include src="'/app/common/pageHeader.html'"></ng-include>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-3">
+      <a href="#/rubrica" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-arrow-left"></i> Elenco </a>
+
+      <div class="box collapsed-box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Info dati</h3>
+          <div class="box-tools">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <div class="box-body box-profile">
+          <p class="text-muted text-center">{{ vm.record.ragioneSociale }}</p>
+
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Creato</b> <span class="pull-right">{{ vm.record.opInsert }}</span>
+            </li>
+            <li class="list-group-item">
+              &nbsp; <span class="pull-right">{{ vm.record.dtInsert | date : 'dd/MM/yyyy HH:mm' : '+0100' }}</span>
+            </li>
+            <li class="list-group-item">
+              <b>Modificato</b> <span class="pull-right">{{ vm.record.opUpdate }}</span>
+            </li>
+            <li class="list-group-item">
+              &nbsp; <span class="pull-right">{{ vm.record.dtUpdate | date : 'dd/MM/yyyy HH:mm' : '+0100' }}</span>
+            </li>
+          </ul>
+
+        </div><!-- /.box-body -->
+      </div>
+
+      <ng-include src="'/app/rubrica/menu.html'"></ng-include>
+    </div>
+    <div class="col-md-9">
+      <ng-include src="'/app/common/toolbarRecord.html'"></ng-include>
+
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Contatto: <span ng-if="vm.recordNew" class="label label-primary">Nuovo</span> <span ng-if="!vm.recordNew" class="text-light-blue">{{ vm.record.ragioneSociale }}</span> </h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form name="frmContatto" role="form" novalidate>
+          <div class="box-body">
+            <div class="form-group col-md-6" ng-class="{ 'has-error': frmContatto.ragioneSociale.$invalid }">
+              <label for="ragioneSociale">Ragione Sociale</label>
+              <input type="text" name="ragioneSociale" ng-model="vm.record.ragioneSociale" class="form-control" placeholder="Nominativo Contatto" required>
+            </div>
+            <div class="form-group col-md-6" ng-class="{ 'has-error': frmContatto.tipo.$invalid }">
+              <label>Tipo Contatto</label>
+              <select name="tipo" ng-model="vm.record.tipo" class="form-control select2" style="width: 100%;" required>
+                <option value="">--- selezionare ---</option>
+                <option value="azienda">Azienda</option>
+                <option value="produttore">Produttore</option>
+              </select>
+            </div><!-- /.form-group -->
+            <div class="form-group col-md-6">
+              <label for="partitaIva">Partita IVA</label>
+              <input type="text" name="partitaIva" ng-model="vm.record.partitaIva" class="form-control" placeholder="00000000000">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="codiceFiscale">Codice Fiscale</label>
+              <input type="text" name="codiceFiscale" ng-model="vm.record.codiceFiscale" class="form-control" placeholder="CodiceFiscale">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="indirizzo">Indirizzo</label>
+              <input type="text" name="indirizzo" ng-model="vm.record.indirizzo" class="form-control" placeholder="Indirizzo completo di civico">
+            </div>
+            <div class="form-group col-md-8">
+              <label for="comune">Comune</label>
+              <input type="text" name="comune" ng-model="vm.record.comune" class="form-control" placeholder="Comune">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="cap">CAP</label>
+              <input type="text" name="cap" ng-model="vm.record.cap" class="form-control" placeholder="00000">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="provincia">Provincia</label>
+              <input type="text" name="provincia" ng-model="vm.record.provincia" class="form-control" placeholder="Sigla Provincia">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="telefono">Telefono</label>
+              <input type="text" name="telefono" ng-model="vm.record.telefono" class="form-control" placeholder="+39 0931 xxxxx">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cellulare">Cellulare</label>
+              <input type="text" name="cellulare" ng-model="vm.record.cellulare" class="form-control" placeholder="Cellulare">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="fax">Fax</label>
+              <input type="text" name="fax" ng-model="vm.record.fax" class="form-control" placeholder="Fax">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="mail">Mail</label>
+              <input type="text" name="mail" ng-model="vm.record.mail" class="form-control" placeholder="email@dominio.xx">
+            </div>
+          </div><!-- /.box-body -->
+
+          <div class="box-footer">
+            <button ng-click="vm.saveRecord()" ng-disabled="frmContatto.$invalid" type="submit" class="btn btn-default">Salva</button>
+            <p ng-show="frmContatto.$invalid" class="help-block">Controllare valori inseriti e campi obbligatori</p>
+          </div>
+        </form>
+      </div><!-- /.box -->
+
+      <ng-include src="'/app/common/toolbarRecord.html'"></ng-include>
+
+    </div><!--/.col (left) -->
+  </div><!-- /.row -->
+</section>

@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" ng-controller="shell as sh">
 
   <!-- Header -->
   <header class="main-header" ng-include="'app/layout/header.html'"></header>
@@ -7,30 +7,17 @@
   <aside class="main-sidebar" ng-include="'app/layout/sidebar-menu.html'"></aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section>
+  <div class="content-wrapper" ui-view>
 
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Your Page Content Here -->
-      <div ui-view></div>
-
-    </section><!-- /.content -->
+    <!-- Your Page Content Here -->
   </div><!-- /.content-wrapper -->
 
   <!-- Main Footer -->
   <footer class="main-footer" ng-include="'app/layout/footer.html'"></footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark" ng-include="'app/layout/sidebar-control.html'"></aside>
+
 </div><!-- ./wrapper -->
 
 <!-- AdminLTE -->

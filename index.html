@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/skins/skin-yellow.min.css">
 
+  <link rel="stylesheet" href="css/angular-toastr.min.css">
+
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
 
@@ -39,12 +41,50 @@
   <script src="plugins/iCheck/icheck.min.js"></script>
 
   <!-- AngularJS -->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-messages.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+
+  <!--
+  <script src="js/angular-ui-bootstrap-bower/ui-bootstrap.min.js"></script>
+	<script src="js/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+  -->
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+	<script src="js/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+
+  <script src="app/webconfig.js"></script>
 
   <!-- app -->
   <script src="app/app.js"></script>
+  <script src="app/config.js"></script>
   <script src="app/config.route.js"></script>
+
+  <!-- common -->
+	<script src="app/layout/shell.js"></script>
+
+	<!-- services -->
+	<script src="app/common/logger.js"></script>
+	<script src="app/common/modalConfirm.js"></script>
+	<script src="app/services/factory.js"></script>
+  <script src="app/services/list.js"></script>
+
+  <!-- debug -->
+	<script src="app/debug/debugCtrl.js"></script>
+
+	<!-- directives -->
+	<script src="app/directives/filemodel.js"></script>
+
+	<script src="app/auth/auth.factory.js"></script>
+	<script src="app/auth/auth.controller.js"></script>
+
+  <!-- Controllers -->
+  <script src="app/dashboard/dashboardCtrl.js"></script>
+  <script src="app/rubrica/rubricaCtrl.js"></script>
+  <script src="app/fattura/fatturaCtrl.js"></script>
 
 </body>
 </html>
