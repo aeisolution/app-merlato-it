@@ -18,14 +18,6 @@
 		// METODI
 		//****************************************************
 		function getCounts() {
-			count('clienti').then(function(result){
-				vm.counts.clienti = result;
-			});
-
-			count('veterinari').then(function(result){
-				vm.counts.veterinari = result;
-			});
-
 			count('referti').then(function(result){
 				vm.counts.referti = result;
 			});

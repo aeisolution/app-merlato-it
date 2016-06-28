@@ -8,7 +8,7 @@
     .factory('webconfig', function() {
         return {
           host 	: host,
-	        api	: host + '/api/v1',
+	        api	: host + '/api/v1/web',
 	        download:	host + '/download'
         };
   	});

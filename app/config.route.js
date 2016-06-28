@@ -51,6 +51,19 @@
               controller: 'rubricaCtrl as vm',
               access: { requiredLogin: true }
           })
+          // Account - Utente****************************************
+          .state('root.profilo', {
+              url: '/account/profilo',
+              templateUrl: 'app/account/profilo.html',
+              //controller: 'dashboardCtrl as vm',
+              access: { requiredLogin: true }
+          })
+          .state('root.cambioPassword', {
+              url: '/account/cambioPassword',
+              templateUrl: 'app/account/cambioPassword.html',
+              controller: 'cambioPasswordCtrl as vm',
+              access: { requiredLogin: true }
+          })    
           // Settings *****************************************
           .state('root.debug', {
               url: '/debug',

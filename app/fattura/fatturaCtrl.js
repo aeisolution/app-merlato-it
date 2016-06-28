@@ -24,27 +24,13 @@
 		vm.applyFilter = applyFilter;
 		vm.resetFilter = resetFilter;
 
-		// Navigazione Record
-		vm.recordSelect = recordSelect;
-		vm.recordNext = recordNext;
-		vm.recordPrev = recordPrev;
-
 		// Navigazione Pagine
 		vm.pageSelect = pageSelect;
 		vm.pageNext = pageNext;
 		vm.pagePrev = pagePrev;
 
 		// Actions - List
-		vm.deleteList = deleteConfirm;
 		vm.refreshList = getList;
-
-		// Actions - Record
-		vm.new = createNew;
-		vm.refreshRecord = undoRecord;
-		vm.deleteRecord = deleteConfirm;
-		vm.saveRecord = save;
-
-		//vm.select = select;
 
 
 		//ACTIVATE *****************************************
@@ -133,140 +119,6 @@
 					calcPageLabel();
 				});
 			}
-		}
-
-		function getRecord(id) {
-			return dataFactory.baseGetById(vm.collection, id).then(function (data) {
-				vm.record = dataList.set(controllerId, 'record', data.data);
-				vm.recordNew = dataList.set(controllerId, 'recordNew', false);
-
-				vm.listIndex = dataList.set(controllerId, 'listIndex', getIndexRecord(id));
-			});
-		}
-
-		function getIndexRecord(id) {
-			var index = -1;
-			for(var i=0,len=vm.list.length;i<len;i++) {
-				if(vm.list[i]._id == id) {
-					return i;
-				}
-			}
-			return index;
-		}
-
-		function postRecord() {
-			dataFactory.basePost(vm.collection,vm.record)
-				.then(
-					function (data) {
-						vm.recordNew = dataList.set(controllerId, 'recordNew', false);
-						vm.record._id = data.data._id;
-						toastr.success('record saved');
-
-						dataFactory.baseGetOneAnag(vm.collection, data.data._id).then(function(data){
-							vm.list.push(data.data);
-						});
-					},
-					function (err) {
-						toastr.error(err.data.response);
-					}
-			);
-		}
-
-		function putRecord() {
-			dataFactory.basePut(vm.collection, vm.record._id, vm.record).then(function (data) {
-				toastr.success('record updated');
-			});
-		}
-
-		function deleteRecord(item) {
-			var index = vm.list.indexOf(item);
-			dataFactory.baseDelete(vm.collection, item._id).then(function (data) {
-				vm.list.splice(index, 1);
-				toastr.success('record deleted');
-			});
-		}
-
-		function deleteConfirm(item) {
-			var strConfirm = 	item.ragioneSociale;
-
-			var modalInstance = $modal.open({
-				templateUrl: 'app/common/modalConfirm.html',
-				controller: 'modalConfirmCtrl as vm',
-				resolve: {
-					text: function () {
-						return strConfirm;
-					}
-				}
-			});
-
-			modalInstance.result
-				.then(
-					function () {
-						deleteRecord(item);
-					},
-					function (err) {
-						toastr.error(err);
-					}
-				);
-
-		}
-
-		function save() {
-			if(vm.recordNew === true) postRecord();
-			else putRecord();
-		}
-
-		function createNew() {
-			vm.recordNew = dataList.set(controllerId, 'recordNew', true);
-			vm.record = dataList.set(controllerId, 'record', {});
-		}
-
-		function undoRecord() {
-			console.log('undoRecord()');
-			if(vm.recordNew === true) {
-				createNew();
-			} else {
-				getRecord(vm.record._id);
-			}
-		}
-
-		// --------------------------------------------------------
-		// Navigazione Record
-		function recordSelect(num) {
-			// Stessa Pagina
-			if(num>-1 && num<vm.listPageSize) {
-					return getRecord(vm.list[num]._id);
-			}
-
-			// Pagina Precendente
-			if(num==-1 && vm.listPage>1) {
-				return pagePrev().then(function(data){
-					return recordPageLast();
-				});
-			}
-
-			// Pagina Successiva
-			if(num==vm.listPageSize && vm.listPage<vm.listPageCount) {
-				return pageNext().then(function(data){
-					return recordPageFirst();
-				});
-			}
-		}
-
-		function recordNext() {
-			return recordSelect(vm.listIndex + 1);
-		}
-
-		function recordPrev() {
-			return recordSelect(vm.listIndex - 1);
-		}
-
-		function recordPageFirst() {
-			return recordSelect(0);
-		}
-
-		function recordPageLast() {
-			return recordSelect(vm.listPageSize - 1);
 		}
 
 		// --------------------------------------------------------
