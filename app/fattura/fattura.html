@@ -12,7 +12,7 @@
           <div class="box-tools pull-right">
             <form class="form-inline" ng-submit="vm.applyFilter()">
               <div class="input-group">
-                <input type="text" class="form-control input-sm" ng-model="vm.filter.search" placeholder="Cerca...">
+                <input type="text" class="form-control input-sm" style="width:200px" ng-model="vm.filter.search" placeholder="Cerca destinatario...">
                 <span class="input-group-addon" ng-click="vm.applyFilter()" ><i class="glyphicon glyphicon-search"></i></span>
                 <span class="input-group-addon" ng-click="vm.resetFilter()"><i class="glyphicon glyphicon-remove"></i></span>
               </div>
@@ -41,7 +41,7 @@
                   <td class="mailbox-subject">{{ item.data }} </td>
                   <td class="mailbox-subject">{{ item.destinatario }} <b ng-if="item.provincia">({{ item.tipo }})</b></td>
                   <td class="mailbox-subject">{{ item.totale | currency:"€ ":2 }}</td>
-                  <td><i class="fa fa-cloud-download fa-2x"></i></td>
+                  <td><i ng-click="vm.download(item._id, item.numero, item.lettera)" class="fa fa-cloud-download fa-2x" style="cursor:pointer;"></i></td>
                 </tr>
               </tbody>
             </table>

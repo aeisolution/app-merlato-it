@@ -36,6 +36,7 @@
           .state('root.referti', {
               url: '/referti',
               templateUrl: 'app/referto/referto.html',
+              controller: 'refertoCtrl as vm',
               access: { requiredLogin: true }
           })
           // Archivi - Rubrica ***********************************
@@ -55,7 +56,7 @@
           .state('root.profilo', {
               url: '/account/profilo',
               templateUrl: 'app/account/profilo.html',
-              //controller: 'dashboardCtrl as vm',
+              controller: 'profiloCtrl as vm',
               access: { requiredLogin: true }
           })
           .state('root.cambioPassword', {
@@ -63,7 +64,7 @@
               templateUrl: 'app/account/cambioPassword.html',
               controller: 'cambioPasswordCtrl as vm',
               access: { requiredLogin: true }
-          })    
+          })
           // Settings *****************************************
           .state('root.debug', {
               url: '/debug',

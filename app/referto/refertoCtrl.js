@@ -1,28 +1,17 @@
-// app/azienda/fatturaCtrl.js
-function dataToBlob(data, callback) {
-	var byteCharacters = atob(data);
-	var byteNumbers = new Array(byteCharacters.length);
-	for (var i = 0; i < byteCharacters.length; i++) {
-			byteNumbers[i] = byteCharacters.charCodeAt(i);
-	}
-	var byteArray = new Uint8Array(byteNumbers);
-
-	var blob = new Blob([byteArray], {type: "application/octet-stream"});
-	return callback(null, blob);
-}
+// app/azienda/refertoCtrl.js
 
 (function () {
 	'use strict';
-	var controllerId = 'fatturaCtrl';
+	var controllerId = 'refertoCtrl';
 	angular.module('app')
-				 .controller(controllerId, ['dataList', 'dataFactory', '$stateParams', '$state', '$scope', '$filter', '$uibModal', 'toastr', fatturaCtrl]);
+				 .controller(controllerId, ['dataList', 'dataFactory', '$stateParams', '$state', '$scope', '$filter', '$uibModal', 'toastr', refertoCtrl]);
 
 
-	function fatturaCtrl(dataList, dataFactory, $stateParams, $state, $scope, $filter, $modal, toastr) {
+	function refertoCtrl(dataList, dataFactory, $stateParams, $state, $scope, $filter, $modal, toastr) {
 		var vm = this;
-		vm.title = 'Fatture';
-		vm.subtitle = 'Veterinario e Clienti';
-		vm.collection = 'fatture';
+		vm.title = 'Referti';
+		vm.subtitle = 'Clienti';
+		vm.collection = 'referti';
 		vm.params = $stateParams;
 
 		// DataList init
@@ -45,6 +34,7 @@ function dataToBlob(data, callback) {
 
 		// Stampa PDF
 		vm.download = download;
+
 
 		//ACTIVATE *****************************************
 		init();
@@ -113,6 +103,7 @@ function dataToBlob(data, callback) {
 					vm.listPageSize 	= dataList.set(controllerId, 'listPageSize', data.data.pager.pageSize);
 
 					calcPageLabel();
+					syncList();
 				});
 			} else {
 
@@ -130,6 +121,7 @@ function dataToBlob(data, callback) {
 					vm.listPageSize 	= dataList.set(controllerId, 'listPageSize', data.data.pager.pageSize);
 
 					calcPageLabel();
+					syncList();
 				});
 			}
 		}
@@ -179,7 +171,7 @@ function dataToBlob(data, callback) {
 						var url = window.URL.createObjectURL(blob);
 
 						a.href = url;
-		        a.download = 'fattura_N' + numero + '-' + (lettera || '') + '.pdf';
+		        a.download = 'referto_N' + numero + '-' + (lettera || '') + '.pdf';
 		        a.click();
 		        window.URL.revokeObjectURL(url);
 
@@ -190,6 +182,36 @@ function dataToBlob(data, callback) {
 					toastr.error(err.data.response);
 				}
 			);
+		}
+
+		// Documenti collegati
+		function syncList() {
+			for(var i=0,len= vm.list.length;i<len;i++) {
+				var item = {};
+				item = vm.list[i];
+
+				getClienteAnag(vm.list[i]);
+			}
+		}
+
+		function getAnag(collection, id, result) {
+			var obj = result;
+			return dataFactory.baseGetById(collection, id + '/anag')
+				.then(function (data) {
+					obj = data.data;
+					return obj;
+			});
+		}
+
+		function getClienteAnag(item) {
+			var obj = item;
+			if(obj.clienteId) {
+				getAnag('clienti', obj.clienteId).then(function(data) {
+					console.log('anagCliente');
+					console.log(data);
+					obj.clienteAnag = (data.cognome || '') + ' ' + (data.nome || '');
+				});
+			}
 		}
 
 	}

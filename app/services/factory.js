@@ -17,8 +17,8 @@
 		};
 
 		// --- PROFILO -----
-		_Factory.getProfiloUtente = function(username) {
-			return $http.get(urlBase + '/profilo/' + username);
+		_Factory.getProfiloUtente = function() {
+			return $http.get(urlBase + '/accounts/profilo');
 		};
 
 		_Factory.updateProfiloUtente = function(username, obj) {
@@ -26,17 +26,6 @@
 		};
 
     // --- PDF -----
-    _Factory.printPdf = function(entity, id) {
-      var config = {
-        method: 'GET',
-        url: urlBase + '/' + entity + '/' + id + '/print',
-        headers: {
-            'Accept': 'application/pdf'
-        }
-      };
-      return $http(config);
-    };
-
     _Factory.downloadPdf = function(entity, id) {
       var config = {
         method: 'GET',
@@ -48,156 +37,6 @@
       return $http(config);
     };
 
-    // --- ANALISI ---
-    _Factory.analisiSpecieAdd = function(id, specie) {
-			return $http.post(urlBase + '/analisi/' + id + '/specie', specie);
-		};
-
-    _Factory.analisiSpecieUpdate = function(id, specie) {
-			return $http.put(urlBase + '/analisi/' + id + '/specie', specie);
-		};
-
-		_Factory.analisiSpecieDelete = function(id, nome) {
-			return $http.delete(urlBase + '/analisi/' + id + '/specie/' + nome);
-		};
-
-    _Factory.analisiGetList = function(list) {
-			var obj = {};
-			obj.list = list;
-
-			return $http.post(urlBase + '/analisi/anag', obj);
-		};
-
-    // --- PROFILO ---
-    _Factory.profiloAnalisiAdd = function(id, analisiId) {
-      var obj = {};
-      obj.analisiId = analisiId;
-			return $http.post(urlBase + '/profili/' + id + '/analisi', obj);
-		};
-
-		_Factory.profiloAnalisiDelete = function(id, analisiId) {
-			return $http.delete(urlBase + '/profili/' + id + '/analisi/' + analisiId);
-		};
-
-
-		// --------------------------------------------------
-		// --- ALBO -----
-		// Restituisce lista di soli campi base di anagrafica
-		// a partire da array di ID
-		_Factory.alboGetList = function(list) {
-			var obj = {};
-			obj.list = list;
-
-			return $http.post(urlBase + '/albo/anag', obj);
-		};
-
-		_Factory.alboSediUpdate = function(id, resIndirizzo, resComune, resCap, resTelefono, resFax, uffIndirizzo, uffComune, uffCap, uffTelefono1, uffTelefono2, uffFax) {
-			var obj = {};
-			obj.resIndirizzo = resIndirizzo;
-			obj.resComune = resComune;
-			obj.resCap = resCap;
-			obj.resTelefono = resTelefono;
-			obj.resFax = resFax;
-			obj.uffIndirizzo = uffIndirizzo;
-			obj.uffComune = uffComune;
-			obj.uffCap = uffCap;
-			obj.uffTelefono1 = uffTelefono1;
-			obj.uffTelefono2 = uffTelefono2;
-			obj.uffFax = uffFax;
-
-			return $http.put(urlBase + '/albo/' + id + '/sedi', obj);
-		};
-
-		_Factory.alboLaureaAdd = function(id, laurea) {
-			return $http.post(urlBase + '/albo/' + id + '/lauree', laurea);
-		};
-
-		_Factory.alboLaureaDelete = function(id, classe) {
-			return $http.delete(urlBase + '/albo/' + id + '/lauree/' + classe);
-		};
-
-		_Factory.alboAbilitazioneAdd = function(id, abilitazione) {
-			return $http.post(urlBase + '/albo/' + id + '/abilitazioni', abilitazione);
-		};
-
-		_Factory.alboAbilitazioneDelete = function(id, anno) {
-			return $http.delete(urlBase + '/albo/' + id + '/abilitazioni/' + anno);
-		};
-
-		_Factory.alboIscrizioneAdd = function(id, iscrizione) {
-			return $http.post(urlBase + '/albo/' + id + '/iscrizioni', iscrizione);
-		};
-
-		_Factory.alboIscrizioneDelete = function(id, iscrizioneId) {
-			return $http.delete(urlBase + '/albo/' + id + '/iscrizioni/' + iscrizioneId);
-		};
-
-		// --------------------------------------------------
-		// --- Commissione -----
-		_Factory.commissioneComponenteAdd = function(id, ingegnereId) {
-			return $http.post(urlBase + '/commissioni/' + id + '/comp/' + ingegnereId,{});
-		};
-
-		_Factory.commissioneComponenteDelete = function(id, ingegnereId) {
-			return $http.delete(urlBase + '/commissioni/' + id + '/comp/' + ingegnereId);
-		};
-
-		_Factory.commissioneRuoliUpdate = function(id, referente, coordinatore, segretario) {
-			var obj = {};
-			obj.referente = referente;
-			obj.coordinatore = coordinatore;
-			obj.segretario = segretario;
-			return $http.put(urlBase + '/commissioni/' + id + '/ruoli', obj);
-		};
-
-		// --------------------------------------------------
-		// --- Consiglio Territoriale/Disciplina -----
-		_Factory.consiglioConsigliereAdd = function(tipo, consiglioId, ingegnereId) {
-			return $http.post(urlBase + '/consigli/' + tipo + '/' + consiglioId + '/cons/' + ingegnereId,{});
-		};
-
-		_Factory.consiglioConsigliereDelete = function(tipo, consiglioId, ingegnereId) {
-			return $http.delete(urlBase + '/consigli/' + tipo + '/' + consiglioId + '/cons/' + ingegnereId);
-		};
-
-		_Factory.consiglioEventoAdd = function(tipo, consiglioId, evento) {
-			return $http.post(urlBase + '/consigli/' + tipo + '/' + consiglioId + '/eventi', evento);
-		};
-
-		_Factory.consiglioEventoDelete = function(tipo, consiglioId, eventoId) {
-			return $http.delete(urlBase + '/consigli/' + tipo + '/' + consiglioId + '/eventi/' + eventoId);
-		};
-
-		// --- Consiglio solo Territoriale -----
-		_Factory.consiglioTRuoliUpdate = function(consiglioId, presidente, vicepresidente, segretario, tesoriere, consulta) {
-			var obj = {};
-			obj.presidente = presidente;
-			obj.vicepresidente = vicepresidente;
-			obj.segretario = segretario;
-			obj.tesoriere = tesoriere;
-			obj.consulta = consulta;
-			return $http.put(urlBase + '/consigli/territorio/' + consiglioId + '/ruoli', obj);
-		};
-
-		// --- Consiglio solo Disciplina -----
-		_Factory.consiglioDRuoliUpdate = function(consiglioId, presidente, segretario) {
-			var obj = {};
-			obj.presidente = presidente;
-			obj.segretario = segretario;
-			return $http.put(urlBase + '/consigli/disciplina/' + consiglioId + '/ruoli', obj);
-		};
-
-		_Factory.consiglioDCollegioAdd = function(consiglioId, collegio) {
-			return $http.post(urlBase + '/consigli/disciplina/' + consiglioId + '/collegi', collegio);
-		};
-
-		_Factory.consiglioDCollegioUpdate = function(consiglioId, collegio) {
-			return $http.put(urlBase + '/consigli/disciplina/' + consiglioId + '/collegi', collegio);
-		};
-
-		_Factory.consiglioDCollegioDelete = function(consiglioId, numCollegio) {
-			return $http.delete(urlBase + '/consigli/disciplina/' + consiglioId + '/collegi/' + numCollegio);
-		};
 
 
 		//*************************************************
@@ -270,83 +109,6 @@
 		_Factory.baseAllegatiDelete = function(entity, id, allegatoId) {
 			return $http.delete(urlBase + '/' + entity + '/' + id + '/allegati/' + allegatoId);
 		};
-
-		//*************************************************
-		// Metodi per UPLOAD FILE E FATTURA
-		//*************************************************
-		_Factory.uploadAllegato = function(entity, id, file) {
-			return $http({
-            method: 'POST',
-            url: urlBase + '/allegato',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            data: {
-								entity: entity,
-								id:	id,
-                upload: file
-            },
-            transformRequest: function (data, headersGetter) {
-                var formData = new FormData();
-                angular.forEach(data, function (value, key) {
-                    formData.append(key, value);
-                });
-
-                var headers = headersGetter();
-                delete headers['Content-Type'];
-
-                return formData;
-            }
-        });
-		}
-
-		_Factory.uploadFile = function(file) {
-			return $http({
-            method: 'POST',
-            url: urlBase + '/upload',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            data: {
-                upload: file
-            },
-            transformRequest: function (data, headersGetter) {
-                var formData = new FormData();
-                angular.forEach(data, function (value, key) {
-                    formData.append(key, value);
-                });
-
-                var headers = headersGetter();
-                delete headers['Content-Type'];
-
-                return formData;
-            }
-        });
-		}
-
-		_Factory.uploadFattura = function(file) {
-			return $http({
-            method: 'POST',
-            url: urlBase + '/upload/fattura',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            data: {
-                upload: file
-            },
-            transformRequest: function (data, headersGetter) {
-                var formData = new FormData();
-                angular.forEach(data, function (value, key) {
-                    formData.append(key, value);
-                });
-
-                var headers = headersGetter();
-                delete headers['Content-Type'];
-
-                return formData;
-            }
-        });
-		}
 
 		//*************************************************
 		// Metodi Preview

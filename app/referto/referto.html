@@ -7,59 +7,51 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Elenco Fatture</h3>
+          <h3 class="box-title">Elenco Referti</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <table id="example2" class="table table-bordered table-hover">
-            <thead>
-              <tr>
+          <!-- Toolbar List -->
+          <ng-include src="'/app/common/toolbarList.html'"></ng-include>
+
+          <div class="table-responsive mailbox-messages">
+
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Numero</th>
+                  <th>Data</th>
+                  <th>Specie</th>
+                  <th>Animale</th>
+                  <th>Cliente</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in vm.list">
+                  <td>{{ item.numero }}/{{ item.lettera }}</td>
+                  <td>{{ item.data }}</td>
+                  <td>{{ item.specie }}</td>
+                  <td>{{ item.nome }}</td>
+                  <td>{{ item.clienteAnag }} </td>
+                  <td><i ng-click="vm.download(item._id, item.numero, item.lettera)" class="fa fa-cloud-download fa-2x" style="cursor:pointer;"></i></td>
+                </tr>
+              </tbody>
+              <!--
+              <tfoot>
+                <tr>
                 <th>Numero</th>
                 <th>Data</th>
                 <th>Specie</th>
                 <th>Animale</th>
                 <th>Cliente</th>
                 <th>Download</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>168/A</td>
-                <td>28/01/2016</td>
-                <td>Cane <br>Maremmano</td>
-                <td>Birillo <br>6 anni</td>
-                <td>Mario Rossi<br>Via Augusta N 52 - Siracusa</td>
-                <td><i class="fa fa-cloud-download fa-2x"></i></td>
-              </tr>
-              <tr>
-                <td>283/B</td>
-                <td>22/02/2016</td>
-                <td>Cane <br></td>
-                <td>Astor <br>4 anni</td>
-                <td>Giovanni Arnaldo<br>Avola</td>
-                <td><i class="fa fa-cloud-download fa-2x"></i></td>
-              </tr>
-              <tr>
-                <td>284/B</td>
-                <td>22/02/2016</td>
-                <td>Gatto <br></td>
-                <td>Merlino <br>9 anni</td>
-                <td>Alice Nissemi<br>Siracusa</td>
-                <td><i class="fa fa-cloud-download fa-2x"></i></td>
-              </tr>
-            </tbody>
-            <!--
-            <tfoot>
-              <tr>
-              <th>Numero</th>
-              <th>Data</th>
-              <th>Specie</th>
-              <th>Animale</th>
-              <th>Cliente</th>
-              <th>Download</th>
-              </tr>
-            </tfoot>
-          -->
-          </table>
+                </tr>
+              </tfoot>
+            -->
+            </table>
+
+          </div>
+
         </div><!-- /.box-body -->
       </div><!-- /.box -->
 

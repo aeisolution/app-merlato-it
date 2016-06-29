@@ -3,6 +3,13 @@
 
 <!-- Main content -->
 <section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="alert alert-info">
+          <i class="fa fa-info-circle"></i> Per richiedere correzione o modifica dei dati di registrazione del profilo veterinario, si invita a contattare la segreteria del Laboratorio.
+      </div>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-md-4">
@@ -10,15 +17,15 @@
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <h3 class="profile-username text-center">Andrea Maddalena</h3>
+          <h3 class="profile-username text-center">{{ vm.record.cognome }} {{ vm.record.nome }}</h3>
           <p class="text-muted text-center">Veterinario</p>
 
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>P.IVA</b> <a class="pull-right">01585960899</a>
+              <b>P.IVA</b> <a class="pull-right">{{ vm.record.partitaIva }}</a>
             </li>
             <li class="list-group-item">
-              <b>Cod. Fisc.</b> <a class="pull-right">MDDNDR78A23G273V</a>
+              <b>Cod. Fisc.</b> <a class="pull-right">{{ vm.record.codiceFiscale }}</a>
             </li>
           </ul>
 
@@ -33,7 +40,7 @@
         </div><!-- /.box-header -->
         <div class="box-body">
           <strong><i class="fa fa-map-marker margin-r-5"></i> Recapiti</strong>
-          <p class="text-muted">Via Grotta Santa N.166/A <br>96100 Siracusa SR</p>
+          <p class="text-muted">{{ vm.record.indirizzo }} <br>{{ vm.record.cap }} {{ vm.record.comune }} {{ vm.record.provincia | uppercase }}</p>
 
 
           <hr>
@@ -41,16 +48,16 @@
           <strong><i class="fa fa-book margin-r-5"></i> Contatti</strong>
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              Telefono <span class="pull-right">0931 1885397</span>
+              Telefono <span class="pull-right">{{ vm.record.telefono }}</span>
             </li>
             <li class="list-group-item">
-              Cellulare <span class="pull-right">349 7935101</span>
+              Cellulare <span class="pull-right">{{ vm.record.cellulare }}</span>
             </li>
             <li class="list-group-item">
-              Fax <span class="pull-right">0931 1885397</span>
+              Fax <span class="pull-right">{{ vm.record.fax }}</span>
             </li>
             <li class="list-group-item">
-              Email <span class="pull-right">info@aeisolution.it</span>
+              Email <span class="pull-right">{{ vm.record.mail }}</span>
             </li>
           </ul>
         </div><!-- /.box-body -->
