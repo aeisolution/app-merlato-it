@@ -167,6 +167,7 @@ function dataToBlob(data, callback) {
 			dataFactory.downloadPdf(vm.collection, id)
 			.then(
 				function (data) {
+
 					var a = document.createElement("a");
 					document.body.appendChild(a);
 					a.style = "display: none";
@@ -179,7 +180,7 @@ function dataToBlob(data, callback) {
 						var url = window.URL.createObjectURL(blob);
 
 						a.href = url;
-		        a.download = 'fattura_N' + numero + '-' + (lettera || '') + '.pdf';
+		        a.download = 'fattura_N' + numero + '-' + (anno || '') + '.pdf';
 		        a.click();
 		        window.URL.revokeObjectURL(url);
 

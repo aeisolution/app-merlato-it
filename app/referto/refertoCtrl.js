@@ -159,23 +159,15 @@
 			dataFactory.downloadPdf(vm.collection, id)
 			.then(
 				function (data) {
-					var a = document.createElement("a");
-					document.body.appendChild(a);
-					a.style = "display: none";
-
 					dataToBlob(data.data, function(err, blob){
 						if(err) {
 							return toastr.error("Errore download file");
 						}
 
-						var url = window.URL.createObjectURL(blob);
+						var file = new Blob([blob], { type: 'application/pdf' });
+	          saveAs(file, 'referto_N' + numero + '-' + (lettera || '') + '.pdf');
 
-						a.href = url;
-		        a.download = 'referto_N' + numero + '-' + (lettera || '') + '.pdf';
-		        a.click();
-		        window.URL.revokeObjectURL(url);
-
-						toastr.success('Download started');
+						toastr.success('Download avviato');
 					});
 				},
 				function (err) {
