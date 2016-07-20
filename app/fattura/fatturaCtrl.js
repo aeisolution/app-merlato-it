@@ -161,7 +161,7 @@ function dataToBlob(data, callback) {
 			vm.listPageLabel = dataList.set(controllerId, 'listPageLabel', start + '-' + end + '/' + vm.listCount);
 		}
 
-		function download(id, numero, lettera) {
+		function download(id, numero, anno) {
 			if(!vm.record) { return; }
 
 			dataFactory.downloadPdf(vm.collection, id)
