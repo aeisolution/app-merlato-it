@@ -33,7 +33,21 @@
                   <td>{{ item.specie }}</td>
                   <td>{{ item.nome }}</td>
                   <td>{{ item.clienteAnag }} </td>
-                  <td><i ng-click="vm.download(item._id, item.numero, item.lettera)" class="fa fa-cloud-download fa-2x" style="cursor:pointer;"></i></td>
+                  <td>
+                    <i ng-click="vm.download(item._id, item.numero, item.lettera)" class="fa fa-cloud-download fa-2x" style="cursor:pointer;"></i>
+                    &nbsp;
+                    <!-- Single button -->
+                    <div ng-if="item.allegati.length>0" class="btn-group" style="vertical-align:top;">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Allegati:
+                        <strong>{{ item.allegati.length }}</strong> &nbsp; <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li ng-repeat="allegato in item.allegati | orderBy: titolo">
+                          <a href="javascript:void(0)" ng-click="vm.downloadAllegato(allegato)"><i class="fa fa-download"></i> {{ allegato.titolo }}</a></li>
+                      </ul>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
               <!--

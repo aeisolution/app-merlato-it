@@ -37,7 +37,13 @@
       return $http(config);
     };
 
-
+    _Factory.downloadFile = function(id) {
+      var config = {
+        method: 'GET',
+        url: urlBase + '/files/' + id + '/download'
+      };
+      return $http(config);
+    };
 
 		//*************************************************
 		// Metodi per API Base

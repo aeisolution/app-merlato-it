@@ -34,6 +34,7 @@
 
 		// Stampa PDF
 		vm.download = download;
+		vm.downloadAllegato = downloadAllegato;
 
 
 		//ACTIVATE *****************************************
@@ -174,6 +175,32 @@
 					toastr.error(err.data.response);
 				}
 			);
+		}
+
+		function downloadAllegato(item) {
+			dataFactory.baseGetById('files', item.id).then(function (data) {
+				var fileOne = data.data;
+
+				dataFactory.downloadFile(item.id)
+				.then(
+					function (data) {
+						dataToBlob(data.data, function(err, blob){
+							if(err) {
+								return toastr.error("Errore download file");
+							}
+
+							var file = new Blob([blob], { type: fileOne.type });
+							saveAs(file, 'ref_N' + vm.record.numero + '-' + vm.record.lettera + '_all_' + item.titolo + fileOne.extension);
+
+							toastr.success('Download avviato');
+						});
+					},
+					function (err) {
+						toastr.error(err.data.response);
+					}
+				);
+
+			});
 		}
 
 		// Documenti collegati
