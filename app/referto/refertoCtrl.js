@@ -177,11 +177,11 @@
 			);
 		}
 
-		function downloadAllegato(item) {
-			dataFactory.baseGetById('files', item.id).then(function (data) {
+		function downloadAllegato(numero, lettera, allegato) {
+			dataFactory.baseGetById('files', allegato.id).then(function (data) {
 				var fileOne = data.data;
 
-				dataFactory.downloadFile(item.id)
+				dataFactory.downloadFile(allegato.id)
 				.then(
 					function (data) {
 						dataToBlob(data.data, function(err, blob){
@@ -190,7 +190,7 @@
 							}
 
 							var file = new Blob([blob], { type: fileOne.type });
-							saveAs(file, 'ref_N' + vm.record.numero + '-' + vm.record.lettera + '_all_' + item.titolo + fileOne.extension);
+							saveAs(file, 'ref_N' + numero + '-' + lettera + '_all_' + allegato.titolo + fileOne.extension);
 
 							toastr.success('Download avviato');
 						});

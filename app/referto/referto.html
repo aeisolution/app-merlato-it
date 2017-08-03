@@ -44,7 +44,7 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li ng-repeat="allegato in item.allegati | orderBy: titolo">
-                          <a href="javascript:void(0)" ng-click="vm.downloadAllegato(allegato)"><i class="fa fa-download"></i> {{ allegato.titolo }}</a></li>
+                          <a href="javascript:void(0)" ng-click="vm.downloadAllegato(item.numero, item.lettera, allegato)"><i class="fa fa-download"></i> {{ allegato.titolo }}</a></li>
                       </ul>
                     </div>
                   </td>
