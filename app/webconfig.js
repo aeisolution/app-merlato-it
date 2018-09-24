@@ -2,7 +2,7 @@
   'use strict';
 
 	//var host = 'http://127.0.0.1:3050';
-  var host = 'http://api.lulab.eu';
+  var host = '//merlato-api.lulab.eu';
 
 	angular.module('webconfig', [])
     .factory('webconfig', function() {
